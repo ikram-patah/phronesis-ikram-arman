@@ -15,31 +15,33 @@ import { debriefs } from '@/data/debriefs'
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-10">
-            <DebriefItem v-for="debrief in debriefs" :key="debrief.id" :id="debrief.id">
-              <template #title>
-                {{ debrief.title }}
-              </template>
-              <template #smile>
-                <ul>
-                  <li
-                    v-for="(smile, index) in debrief.smiles"
-                    v-html="smile"
-                    :key="index"
-                    class="mb-3"
-                  ></li>
-                </ul>
-              </template>
-              <template #confusing>
-                <ul>
-                  <li
-                    v-for="(confusing, index) in debrief.confusings"
-                    v-html="confusing"
-                    :key="index"
-                    class="mb-3"
-                  ></li>
-                </ul>
-              </template>
-            </DebriefItem>
+            <div class="accordion mb-3" id="accordion-debrief">
+              <DebriefItem v-for="debrief in debriefs" :key="debrief.id" :id="debrief.id">
+                <template #title>
+                  {{ debrief.title }}
+                </template>
+                <template #smile>
+                  <ul>
+                    <li
+                      v-for="(smile, index) in debrief.smiles"
+                      v-html="smile"
+                      :key="index"
+                      class="mb-3"
+                    ></li>
+                  </ul>
+                </template>
+                <template #confusing>
+                  <ul>
+                    <li
+                      v-for="(confusing, index) in debrief.confusings"
+                      v-html="confusing"
+                      :key="index"
+                      class="mb-3"
+                    ></li>
+                  </ul>
+                </template>
+              </DebriefItem>
+            </div>
           </div>
         </div>
       </div>
