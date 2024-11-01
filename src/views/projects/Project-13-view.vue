@@ -4,6 +4,7 @@ import RebillyInstruments from '@rebilly/instruments'
 import LayoutDefault from '@/components/layout/Layout-default.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 import rebillyApi, { organizationId, websiteId } from '@/helpers/api'
+import { theme } from '@/helpers/theme-instruments'
 
 const breadcrumbPath = ['home', 'Project 13: Casino deposit payment methods']
 const customerId = 'ambrosio-ander'
@@ -63,7 +64,8 @@ function initiateInstrument(depositRequestId) {
   RebillyInstruments.mount({
     apiMode: 'sandbox',
     jwt: state.jwt,
-    deposit: { depositRequestId }
+    deposit: { depositRequestId },
+    theme
   })
 }
 
@@ -108,33 +110,41 @@ onMounted(async () => {
       <div class="container pb-5 pt-3">
         <Breadcrumb :path="breadcrumbPath" />
 
-        <div class="btn-group mt-2 mb-3">
-          <button
-            type="button"
-            class="btn btn-sm"
-            :class="activeButtonClass('USD')"
-            @click="changeCurrency('USD')"
-          >
-            USD
-          </button>
-          <button
-            type="button"
-            class="btn btn-sm"
-            :class="activeButtonClass('CAD')"
-            @click="changeCurrency('CAD')"
-          >
-            CAD
-          </button>
-        </div>
-
         <div class="row">
           <div class="col-xl-6 col-lg-8">
-            <div class="card shadow-lg">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-md-auto">
+                <h3 class="display-6 m-0">
+                  <small>Make your deposit</small>
+                </h3>
+              </div>
+              <div class="col-md-auto">
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-sm"
+                    :class="activeButtonClass('USD')"
+                    @click="changeCurrency('USD')"
+                  >
+                    USD
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-sm"
+                    :class="activeButtonClass('CAD')"
+                    @click="changeCurrency('CAD')"
+                  >
+                    CAD
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card shadow-lg mt-4">
               <div class="card-body">
                 <div class="text-center" v-if="state.isAuthenticating">
                   <div class="spinner-border text-secondary my-5"></div>
                 </div>
-                <div class="rebilly-instruments-summary"></div>
                 <div class="rebilly-instruments"></div>
               </div>
             </div>
