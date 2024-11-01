@@ -10,7 +10,8 @@ const customerId = 'ambrosio-ander'
 
 const state = reactive({
   isAuthenticating: false,
-  currency: 'USD'
+  currency: 'USD',
+  jwt: null
 })
 
 async function logInCustomer() {
@@ -58,16 +59,30 @@ async function generateDepositRequest() {
   return depositRequestId
 }
 
-function initiateInstrument({ token, depositRequestId }) {
+function initiateInstrument(depositRequestId) {
   RebillyInstruments.mount({
     apiMode: 'sandbox',
-    jwt: token,
+    jwt: state.jwt,
     deposit: { depositRequestId }
   })
 }
 
 function destroyInstruments() {
   RebillyInstruments.destroy()
+}
+
+function activeButtonClass(currency) {
+  return state.currency === currency ? 'btn-primary' : 'btn-outline-primary'
+}
+
+async function changeCurrency(currency) {
+  state.currency = currency
+
+  destroyInstruments()
+  state.isAuthenticating = true
+  const depositRequestId = await generateDepositRequest()
+  state.isAuthenticating = false
+  initiateInstrument(depositRequestId)
 }
 
 onMounted(async () => {
@@ -80,9 +95,10 @@ onMounted(async () => {
     generateDepositRequest()
   ])
 
+  state.jwt = jwt
   state.isAuthenticating = false
 
-  initiateInstrument({ token: jwt, depositRequestId })
+  initiateInstrument(depositRequestId)
 })
 </script>
 
@@ -91,12 +107,32 @@ onMounted(async () => {
     <div id="apartment" class="py-5 bg-body-tertiary">
       <div class="container pb-5 pt-3">
         <Breadcrumb :path="breadcrumbPath" />
+
+        <div class="btn-group mt-2 mb-3">
+          <button
+            type="button"
+            class="btn btn-sm"
+            :class="activeButtonClass('USD')"
+            @click="changeCurrency('USD')"
+          >
+            USD
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm"
+            :class="activeButtonClass('CAD')"
+            @click="changeCurrency('CAD')"
+          >
+            CAD
+          </button>
+        </div>
+
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-xl-6 col-lg-8">
             <div class="card shadow-lg">
               <div class="card-body">
                 <div class="text-center" v-if="state.isAuthenticating">
-                  <div class="spinner-border my-5"></div>
+                  <div class="spinner-border text-secondary my-5"></div>
                 </div>
                 <div class="rebilly-instruments-summary"></div>
                 <div class="rebilly-instruments"></div>
