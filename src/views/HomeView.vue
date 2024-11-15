@@ -9,11 +9,11 @@ import { RouterLink } from 'vue-router'
       <div class="container">
         <div class="row">
           <div class="col-sm-6 col-lg-4 mb-4">
-            <RouterLink :to="{ name: 'project-13' }" custom v-slot="{ navigate }">
+            <RouterLink :to="{ name: 'project-15' }" custom v-slot="{ navigate }">
               <div class="card shadow-lg" @click="navigate">
                 <div class="card-body">
-                  <h5 class="card-title">Project 13</h5>
-                  <p class="card-text text-muted">Casino deposit payment methods</p>
+                  <h5 class="card-title">Project 15</h5>
+                  <p class="card-text text-muted">Casino deposit 3ds</p>
                 </div>
               </div>
             </RouterLink>

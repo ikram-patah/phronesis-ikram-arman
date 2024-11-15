@@ -36,5 +36,25 @@ export const debriefs = [
         </div>
       `
     ]
+  },
+  {
+    id: 'project-15',
+    title: 'Project 15: Casino deposit 3ds',
+    smiles: [
+      `
+        It was straightforward to set up the 3DS and the good thing that there's a link to documentation with good explanation of how to set up both flows.
+      `,
+    ],
+    confusings: [
+      `
+        Country field in "Merchant Country" should be a dropdown or at least inform that 2-alpha code is accepted
+      `,
+      `
+        It's not clear which fields are required in 3ds configuration
+      `,
+      `
+        When validation error happens, fields with errors are not highlighted. Validation message should also be on top. not on the bottom.
+      `
+    ]
   }
 ]
