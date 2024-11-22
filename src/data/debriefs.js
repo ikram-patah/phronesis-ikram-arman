@@ -38,22 +38,25 @@ export const debriefs = [
     ]
   },
   {
-    id: 'project-15',
-    title: 'Project 15: Casino deposit 3ds',
+    id: 'project-16',
+    title: 'Project 16: Casino payout form',
     smiles: [
       `
-        It was straightforward to set up the 3DS and the good thing that there's a link to documentation with good explanation of how to set up both flows.
-      `,
+        It was straightforward to set up the payout form. Documentations were helpful.
+      `
     ],
     confusings: [
       `
-        Country field in "Merchant Country" should be a dropdown or at least inform that 2-alpha code is accepted
+        Payout disclaimer should be modifiable by the user.
       `,
       `
-        It's not clear which fields are required in 3ds configuration
+        We do not have any payment cards to trigger the declined flow for payouts.
       `,
       `
-        When validation error happens, fields with errors are not highlighted. Validation message should also be on top. not on the bottom.
+        Negative number for allocation should not be allowed (FE validation needed).
+      `,
+      `
+        Code samples display is quite narrow. Hard to actually read the codes.
       `
     ]
   }
