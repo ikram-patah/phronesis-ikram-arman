@@ -6,14 +6,16 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
 import rebillyApi, { organizationId, websiteId } from '@/helpers/api'
 import { theme } from '@/helpers/theme-instruments'
 
-const breadcrumbPath = ['home', 'Project 16: Casino payout form']
-const customerId = 'cus_01JD9GEY46X481BVNX2TNWHVEB'
+const breadcrumbPath = ['home', 'Project  17: Casino payout payment methods']
+const customerId = 'ambrosio-ander'
 
 const state = reactive({
   isAuthenticating: false,
   jwt: null,
   amount: null,
-  displayForm: true
+  displayForm: true,
+  currency: 'USD',
+  displayCurrencySelector: true,
 })
 
 async function logInCustomer() {
@@ -55,11 +57,19 @@ async function onClickHandle() {
   }
   state.displayForm = false
   state.isAuthenticating = true
+  state.displayCurrencySelector = false
   const token = await logInCustomer()
   const [jwt, payoutRequestId] = await Promise.all([exchangeToken(token), generatePayout()])
   state.jwt = jwt
   state.isAuthenticating = false
   initiateInstrument(payoutRequestId)
+}
+
+
+async function changeCurrency(currency) {
+  state.currency = currency
+
+  destroyInstruments()
 }
 
 async function generatePayout() {
@@ -70,7 +80,7 @@ async function generatePayout() {
       websiteId,
       customerId,
       amount: Number(state.amount),
-      currency: 'USD'
+      currency: state.currency,
     }
   })
   return payoutRequestId
@@ -89,6 +99,11 @@ function initiateInstrument(payoutRequestId) {
 
 function destroyInstruments() {
   RebillyInstruments.destroy()
+  state.displayForm = false
+}
+
+function activeButtonClass(currency) {
+  return state.currency === currency ? 'btn-primary' : 'btn-outline-primary'
 }
 </script>
 
@@ -100,11 +115,32 @@ function destroyInstruments() {
 
         <div class="row">
           <div class="col-xl-6 col-lg-8">
+
             <div class="row justify-content-between align-items-center">
               <div class="col-md-auto">
                 <h3 class="display-6 m-0">
-                  <small>Request your payout</small>
+                  <small>Make your payout</small>
                 </h3>
+              </div>
+              <div class="col-md-auto"  v-if="state.displayCurrencySelector">
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-sm"
+                    :class="activeButtonClass('USD')"
+                    @click="changeCurrency('USD')"
+                  >
+                    USD
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-sm"
+                    :class="activeButtonClass('CAD')"
+                    @click="changeCurrency('CAD')"
+                  >
+                    CAD
+                  </button>
+                </div>
               </div>
             </div>
 

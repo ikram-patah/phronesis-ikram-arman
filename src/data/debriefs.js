@@ -59,5 +59,22 @@ export const debriefs = [
         Code samples display is quite narrow. Hard to actually read the codes.
       `
     ]
+  },
+  {
+    id: 'project-17',
+    title: 'Project 17: Casino payout payment methods',
+    smiles: [
+      `
+        It's more or less the same as we had in project 15. We even copied some of the code.
+      `
+    ],
+    confusings: [
+      `
+        We didn't manage eCheck to work. It was in ready-to-payout API response, but Instruments don't display it. We also didn't notice the method in the list in payment instruments: https://www.rebilly.com/docs/dev-docs/api/payment-instruments
+      `,
+      `
+        Documentation for Instruments should have list of methods supported.
+      `,
+    ]
   }
 ]
