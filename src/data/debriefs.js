@@ -76,5 +76,28 @@ export const debriefs = [
         Documentation for Instruments should have list of methods supported.
       `,
     ]
+  },
+  {
+    id: 'project-18',
+    title: 'Project 18: Add digital wallets to deposit flow',
+    smiles: [
+      `
+        No coding involved.
+      `
+    ],
+    confusings: [
+      `
+        We didn't find documentation how to configure digital wallets for Instruments.
+      `,
+      `
+        It's not clear that we also need to configure Ready To Pay event in Rules Engine.
+      `,
+      `
+        We should have some links in the documentation how to test Google Pay - had to look for it in other places.
+      `,
+      `
+        Samsung Pay doesn't work at all - even in our interactive example for Framepay.
+      `,
+    ]
   }
 ]
