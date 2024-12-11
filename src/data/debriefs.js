@@ -74,7 +74,7 @@ export const debriefs = [
       `,
       `
         Documentation for Instruments should have list of methods supported.
-      `,
+      `
     ]
   },
   {
@@ -97,7 +97,36 @@ export const debriefs = [
       `,
       `
         Samsung Pay doesn't work at all - even in our interactive example for Framepay.
+      `
+    ]
+  },
+  {
+    id: 'project-19',
+    title: 'Project 19: VIP customers',
+    smiles: [
+      `
+        No coding involved. All changes were possible to be made using only Recomm.
+      `
+    ],
+    confusings: [
+      `
+        Customer lifetime revenue is calculated after tagging automation happens. So you need to make another transaction before the automation for lifetime revenue is applied. 
       `,
+      `
+        Adjust ready to pay action in rules engine doesn't add method, but returns the whole list. Therefore the VIP customers, we had to include everything on the RTP list.
+      `,
+      `
+        Instruments bug: Error stating "Deposit request is not started" happens intermittently. This tends to happen when Instrument is loaded twice on the page or the deposit button is clicked twice before the payment screen is loaded.
+        <div class="mt-3">
+          <img src="/images/project-19/19-1.png" style="max-width: 700px" />
+        </div>
+      `,
+      `
+        Instruments bug: After completing the 1st deposit of 5,000 USD. The second time opening the Instruments, it is not longer working (the button are all in active state and the deposit amount field should "NaN").
+        <div class="mt-3">
+          <img src="/images/project-19/19-2.png" style="max-width: 700px" />
+        </div>
+      `
     ]
   }
 ]

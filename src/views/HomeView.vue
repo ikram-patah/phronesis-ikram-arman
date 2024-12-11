@@ -17,11 +17,11 @@ import { RouterLink } from 'vue-router'
                 </div>
               </div>
             </RouterLink>
-            <RouterLink :to="{ name: 'project-18' }" custom v-slot="{ navigate }">
+            <RouterLink :to="{ name: 'project-19' }" custom v-slot="{ navigate }">
               <div class="card shadow-lg" @click="navigate">
                 <div class="card-body">
-                  <h5 class="card-title">Project 18</h5>
-                  <p class="card-text text-muted">Add digital wallets to deposit flow</p>
+                  <h5 class="card-title">Project 19</h5>
+                  <p class="card-text text-muted">VIP customers</p>
                 </div>
               </div>
             </RouterLink>

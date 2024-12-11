@@ -6,7 +6,7 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
 import rebillyApi, { organizationId, websiteId } from '@/helpers/api'
 import { theme } from '@/helpers/theme-instruments'
 
-const breadcrumbPath = ['home', 'Project 18: Add digital wallets to deposit flow']
+const breadcrumbPath = ['home', 'Project 19: VIP customers']
 const customerId = 'ambrosio-ander'
 
 const state = reactive({
